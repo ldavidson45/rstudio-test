@@ -1,22 +1,23 @@
-<template lang="ts">
+<template>
 	<div class="timer-wrapper">
-	{{minutes}}:{{seconds}}
-	<div class="keypad">
-	<button class="keypad__button" 
-		v-for="(integer, index) in timerIntegerButtons" 
-		:key="integer" 
-		@click="updateTimer(integer)"
-	>
-	{{ integer }}
-	</button>
-	</div>
-	<button class="keypad__start-button" 
-		@click="startTimer" 
-		:disabled="isStartDisabled"
-	>
-		Start
-	</button>
-
+		{{ minutes }}:{{ seconds }}
+		<div class="keypad">
+			<button
+				class="keypad__button"
+				v-for="integer in timerIntegerButtons"
+				:key="integer"
+				@click="updateTimer(integer)"
+			>
+				{{ integer }}
+			</button>
+		</div>
+		<button
+			class="keypad__start-button"
+			@click="startTimer"
+			:disabled="isStartDisabled"
+		>
+			Start
+		</button>
 	</div>
 </template>
 
@@ -78,3 +79,29 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.timer-wrapper {
+	max-width: 300px;
+	margin: auto;
+	text-align: center;
+}
+
+.keypad {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	&__button,
+	&__start-button {
+		width: 33%;
+		height: 50px;
+		border-radius: 0;
+		border: 1px solid black;
+		background: rgb(198, 218, 241);
+	}
+
+	&__start-button {
+		width: 100%;
+	}
+}
+</style>
